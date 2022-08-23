@@ -1,44 +1,38 @@
 - name: Opening firewall ports
-  become: yes
+  become: true
   ufw:
     rule: allow
     port: "{{ item }}"
-  
+
   loop:
     - 22
     - 443
     - 80
 
-
 - name: Setting firewall
-  become: yes
+  become: true
   ufw:
     state: enabled
 
-
 - name: Disabling iptables
-  become: yes
+  become: true
   command: iptables -P INPUT ACCEPT
   tags: [never, disable-iptables]
 
 - name: Disabling iptables
-  become: yes
-  command: iptables -P FORWARD ACCEPT 
+  become: true
+  command: iptables -P FORWARD ACCEPT
   tags: [never, disable-iptables]
 
-
 - name: Disabling iptables
-  become: yes
+  become: true
   command: iptables -P OUTPUT ACCEPT
   tags: [never, disable-iptables]
 
-
 - name: Disabling iptables
-  become: yes
+  become: true
   command: iptables -F
   tags: [never, disable-iptables]
-
-
 
 - name: Resetting connection
   meta: reset_connection
