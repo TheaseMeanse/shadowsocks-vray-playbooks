@@ -9,7 +9,6 @@
     dest: "../client-config/shadowsocks-libev.json"
     force: yes
 
-
 - name: Templating shadowsocks windows/mobile config
   template:
     src: "config.j2"
@@ -17,6 +16,6 @@
     force: yes
 
 - name: Generating qr code for client setup
-  script: 
+  script:
     cmd: "../ss-qrcode/ss-qrcode.py --config ../client-config/config.json --s ../client-config/qrcode.png --no-open"
     executable: "../venv/bin/python3"
